@@ -21,11 +21,11 @@ for alphabet in word_count:
 
 answer = ''
 
-for i in range(0, len(word), 2):
-    if word_count[word_list[i]] % 2 == 1:
-        word_count[word_list[i]] -= 1
-    else:
-        answer += word_list[i]
+# 한 글자씩 읽어오기
+for alphabet in word_count:
+    half_count = word_count[alphabet] // 2
+    answer += alphabet * half_count
+    word_count[alphabet] -= half_count * 2
 
 tmp = answer[::-1]
 answer += odd_alphabet
