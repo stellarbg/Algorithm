@@ -1,18 +1,30 @@
+from collections import deque
+
 n = int(input())
-graph = list(map(int, input().split()))
-s = int(input())
+arr = list(map(int, input().split()))
+s = int(input()) - 1
 
 visited = [0] * n
+visited[s] = 1
+
 cnt = 1
+queue = deque()
+queue.append(s)
 
-def dfs(x):
-    global cnt
+while queue:
+    current = queue.popleft()
+    jump_distance = arr[current]
 
-    for dx in (x - graph[x], x + graph[x]):
-        if 0 <= dx < n and visited[dx] == 0:
-            cnt += 1
-            visited[dx] = 1
-            dfs(dx)
+    left = current - jump_distance
+    if left >= 0 and visited[left] == 0:
+        visited[left] = 1
+        queue.append(left)
+        cnt += 1
 
-dfs(s - 1)
+    right = current + jump_distance
+    if right < n and visited[right] == 0:
+        visited[right] = 1
+        queue.append(right)
+        cnt += 1
+
 print(cnt)
