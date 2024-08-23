@@ -21,7 +21,7 @@ def solution(maps):
                 nx = x + dx[i]
                 ny = y + dy[i]
 
-                if 0 <= nx < len(graph) and 0 <= ny < len(graph) and not visited[nx][ny]:
+                if 0 <= nx < len(graph) and 0 <= ny < len(graph[0]) and not visited[nx][ny]:
                     if graph[nx][ny] != "X":
                         queue.append((nx, ny))
                         visited[nx][ny] = True
