@@ -1,16 +1,7 @@
-
 def solution(n):
-
-    standard = bin(n)
-    standard_cnt = standard.count("1")
-
+    answer = n + 1
     while True:
-        next = n + 1
-        next_bin = bin(next)
-
-        if next_bin.count("1") == standard_cnt:
-            break
-        else:
-            n += 1
-
-    return next
+        if bin(answer).count('1') == bin(n).count('1'):
+            return answer
+        answer += 1
+    
