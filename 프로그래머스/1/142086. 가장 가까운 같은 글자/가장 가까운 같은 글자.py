@@ -1,12 +1,17 @@
-def solution(s):
-    answer = []
-    dict = {}
+def solution(cacheSize, cities):
+    answer = 0
 
-    for i in range(len(s)):
-        if s[i] not in dict:
-            answer.append(-1)
+    cache = []
+
+    for city in cities:
+        if city in cache:
+            cache.remove(city)
+            cache.append(city)
+            answer += 1
         else:
-            answer.append(i - dict[s[i]])
-        dict[s[i]] = i
+            if len(cache) >= cacheSize:
+                cache.pop(0)
+            cache.append(city)
+            answer += 5
 
     return answer
