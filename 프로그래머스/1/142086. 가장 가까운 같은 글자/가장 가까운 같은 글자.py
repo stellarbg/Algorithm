@@ -1,17 +1,15 @@
-def solution(cacheSize, cities):
-    answer = 0
+def solution(s):
+    answer = []
 
-    cache = []
+    dic = {}
 
-    for city in cities:
-        if city in cache:
-            cache.remove(city)
-            cache.append(city)
-            answer += 1
+    for index, word in enumerate(s):
+
+        if word in dic:
+            answer.append(index - dic[word])
         else:
-            if len(cache) >= cacheSize:
-                cache.pop(0)
-            cache.append(city)
-            answer += 5
+            answer.append(-1)
+
+        dic[word] = index
 
     return answer
